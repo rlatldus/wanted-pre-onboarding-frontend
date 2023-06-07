@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { SubmitButton } from "../components/button";
-
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import {Label} from "../components/input";
 const SignUp = () => {
+
+
+
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [isFormValid, setIsFormValid] = useState(false);
 
@@ -19,36 +25,37 @@ const SignUp = () => {
       console.log("실패");
       setIsFormValid(false);
     }
-  };
+    axios
+    .post(
+      `https://www.pre-onboarding-selection-task.shop/auth/signup`,
+      {
+        email: userData.email,
+        password: userData.password
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then(function (response) {
+      console.log("회원가입 성공:", response);
+      navigate("/signin")
+  
+    })
+    .catch(function (error) {
+      console.log("회원가입 실패:", error.response);
+    })
+  }
+
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>회원가입</p>
-      <label>
-        이메일입력
-        <input
-          type="email"
-          name="email"
-          tabIndex="1"
-          data-testid="email-input"
-          placeholder="8자이상 가능합니다."
-          value={userData.email}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        비밀번호입력
-        <input
-          type="password"
-          name="password"
-          tabIndex="2"
-          minLength={8}
-          placeholder="이메일을 입력해주세요."
-          value={userData.password}
-          onChange={handleChange}
-          data-testid="password-input"
-        />
-      </label>
+      <Label
+        handleChange={handleChange}
+        email={userData.email}
+        password={userData.password}
+      />
       <SubmitButton type="submit" data-testid="signup-button" disabled={isFormValid}>
         회원가입
       </SubmitButton>
