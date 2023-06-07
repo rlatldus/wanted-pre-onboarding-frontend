@@ -23,9 +23,12 @@ const ButtonCont = styled.button`
     font-size: 16px;
     font-weight: 600;
     border-radius: 24px;
+    &:active {
+        background-color: #ca4c22;
+      }
 `;
 
-export const Button = ({ children, ...rest }) => {
+const SubmitButton = ({ children, ...rest }) => {
   return (
     <ButtonBg>
       <ButtonShadow {...rest}>
@@ -34,3 +37,5 @@ export const Button = ({ children, ...rest }) => {
     </ButtonBg>
   );
 };
+
+export{SubmitButton};
