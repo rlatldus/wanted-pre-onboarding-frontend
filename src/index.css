@@ -5,6 +5,10 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+:root{
+  --limeorange: #ffb49b;
+}
+
 body {
   margin: 0 auto;
   text-align: center;

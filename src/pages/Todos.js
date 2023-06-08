@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import { SubmitButton } from '../components/button';
+import { Button } from '../components/button';
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
@@ -80,7 +80,7 @@ function TodoList() {
         placeholder="Enter a new todo"
         data-testid="new-todo-input"
       />
-      <SubmitButton small onClick={handleAddTodo} data-testid="new-todo-add-button">추가</SubmitButton>
+      <Button small onClick={handleAddTodo} data-testid="new-todo-add-button">추가</Button>
       <ul>
         {todos.map((todo, index) => (
           <li key={index}>
@@ -92,18 +92,18 @@ function TodoList() {
                   onChange={(e) => setModifiedTodo(e.target.value)}
                   data-testid="modify-input"
                 />
-                <SubmitButton small
+                <Button small
                   onClick={() => handleSubmitModification(index)}
                   data-testid="submit-button"
                 >
                   제출
-                </SubmitButton>
-                <SubmitButton small
+                </Button>
+                <Button small
                   onClick={handleCancelModification}
                   data-testid="cancel-button"
                 >
                   취소
-                </SubmitButton>
+                </Button>
               </>
             ) : (
               <>
@@ -111,18 +111,18 @@ function TodoList() {
                   <input type="checkbox" />
                   <span>{todo}</span>
                 </label>
-                <SubmitButton small
+                <Button small
                   onClick={() => handleModifyTodo(index)}
                   data-testid="modify-button"
                 >
                   수정
-                </SubmitButton>
-                <SubmitButton small
+                </Button>
+                <Button small
                   onClick={() => handleDeleteTodo(index)}
                   data-testid="delete-button"
                 >
                   삭제
-                </SubmitButton>
+                </Button>
               </>
             )}
           </li>

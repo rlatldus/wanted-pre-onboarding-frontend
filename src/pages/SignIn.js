@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { SubmitButton } from "../components/button";
+import { Button } from "../components/button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Label } from "../components/input";
+import { Form } from "../components/form";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -47,20 +48,19 @@ const SignIn = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Label
         handleChange={handleChange}
         email={userData.email}
         password={userData.password}
       />
-      <SubmitButton
-        type="submit"
+      <Button primary
         data-testid="signup-button"
         disabled={isFormValid}
       >
         로그인
-      </SubmitButton>
-    </form>
+      </Button>
+    </Form>
   );
 };
 
