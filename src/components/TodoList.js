@@ -1,4 +1,4 @@
-import { SubmitButton } from "./button";
+import { Button } from "./button";
 import React, { useState } from 'react';
 import axios from "axios";
 
@@ -75,20 +75,20 @@ const TodoList = ({data, handleDeleteTodo}) => {
 
         {isEditMode ? (
           <>
-            <SubmitButton
+            <Button
               small
               onClick={() => handleSubmitModification(true)}
               data-testid="submit-button"
             >
               제출
-            </SubmitButton>
-            <SubmitButton
+            </Button>
+            <Button
               small
               onClick={handleCancelModification}
               data-testid="cancel-button"
             >
               취소
-            </SubmitButton>
+            </Button>
           </>
         ) : (
           <>
@@ -96,20 +96,20 @@ const TodoList = ({data, handleDeleteTodo}) => {
               <input type="checkbox" />
               <span>{todo}</span>
             </label>
-            <SubmitButton
+            <Button
               small
               onClick={() => handleModifyTodo(true)}
               data-testid="modify-button"
             >
               수정
-            </SubmitButton>
-            <SubmitButton
+            </Button>
+            <Button
               small
               onClick={() => handleDeleteTodo(id)}
               data-testid="delete-button"
             >
               삭제
-            </SubmitButton>
+            </Button>
           </>
         )}
       </>
