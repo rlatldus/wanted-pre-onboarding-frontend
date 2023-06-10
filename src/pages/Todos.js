@@ -1,135 +1,76 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { SubmitButton } from "../components/button";
+import { TodoListli } from "../components/TodoList";
 import axios from "axios";
-import { Button } from '../components/button';
 
-function TodoList() {
+function Todos() {
+  const access_token = localStorage.getItem("access_token");
   const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState('');
-  const [editingTodoIndex, setEditingTodoIndex] = useState(null);
-  const [modifiedTodo, setModifiedTodo] = useState('');
+  const [newTodo, setNewTodo] = useState("");
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e) => { //NOTE 정보 가져오기
     setNewTodo(e.target.value);
   };
 
-  const handleAddTodo = () => {
-    if (newTodo.trim() !== '') {
-      setTodos([...todos, newTodo]);
-      setNewTodo('');
-    }
-  };
+  useEffect(() => {
+    axios
+      .get(`https://www.pre-onboarding-selection-task.shop/todos`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      })
+      .then((res) => {
+        setTodos(res.data);
+        console.log(res.data)
+      });
+  }, [access_token]);
 
-  const handleModifyTodo = (index) => {
-    setEditingTodoIndex(index);
-    setModifiedTodo(todos[index]);
-  };
-
-  const handleSubmitModification = (index) => {
-    if (modifiedTodo.trim() !== '') {
-      const updatedTodos = [...todos];
-      updatedTodos[index] = modifiedTodo;
-      setTodos(updatedTodos);
-      setEditingTodoIndex(null);
-      setModifiedTodo('');
-
-      axios
+const handleAddTodo = () => {
+  if (newTodo.trim() !== "") {
+    axios
       .post(
         `https://www.pre-onboarding-selection-task.shop/todos`,
         {
-          todo: ""
+          todo: newTodo,
         },
         {
           headers: {
-            "Authorization": "Bearer access_token",
-            "Content-Type": "application/json"
+            Authorization: `Bearer ${access_token}`,
+            "Content-Type": "application/json",
           },
         }
       )
       .then(function (response) {
-        console.log("로그인 성공:", response.data);
-        localStorage.setItem( "access_token", response.data.access_token);
+        setTodos((prevTodos) => [...prevTodos, response.data]);
+        setNewTodo("");
       })
       .catch(function (error) {
-        console.log("로그인 실패:", error.response);
+        console.log("글쓰기 실패:", error.response);
       });
-  };
-    
-    }
+  }
+};
 
 
-  
 
-  const handleCancelModification = () => {
-    setEditingTodoIndex(null);
-    setModifiedTodo('');
-  };
 
-  const handleDeleteTodo = (index) => {
-    const updatedTodos = todos.filter((_, i) => i !== index);
-    setTodos(updatedTodos);
-  };
+
+
 
   return (
     <div>
       <h1>Todo List</h1>
 
-      <input
-        type="text"
-        value={newTodo}
-        onChange={handleInputChange}
-        placeholder="Enter a new todo"
-        data-testid="new-todo-input"
-      />
-      <Button small onClick={handleAddTodo} data-testid="new-todo-add-button">추가</Button>
+      <input type="text" value={newTodo} onChange={handleInputChange} placeholder="Enter a new todo" data-testid="new-todo-input" />
+      <SubmitButton small onClick={handleAddTodo} data-testid="new-todo-add-button">
+        추가
+      </SubmitButton>
       <ul>
         {todos.map((todo, index) => (
-          <li key={index}>
-            {editingTodoIndex === index ? (
-              <>
-                <input
-                  type="text"
-                  value={modifiedTodo}
-                  onChange={(e) => setModifiedTodo(e.target.value)}
-                  data-testid="modify-input"
-                />
-                <Button small
-                  onClick={() => handleSubmitModification(index)}
-                  data-testid="submit-button"
-                >
-                  제출
-                </Button>
-                <Button small
-                  onClick={handleCancelModification}
-                  data-testid="cancel-button"
-                >
-                  취소
-                </Button>
-              </>
-            ) : (
-              <>
-                <label>
-                  <input type="checkbox" />
-                  <span>{todo}</span>
-                </label>
-                <Button small
-                  onClick={() => handleModifyTodo(index)}
-                  data-testid="modify-button"
-                >
-                  수정
-                </Button>
-                <Button small
-                  onClick={() => handleDeleteTodo(index)}
-                  data-testid="delete-button"
-                >
-                  삭제
-                </Button>
-              </>
-            )}
-          </li>
+          <TodoListli key={index} todo={todo.todo} id={todo.id} index={index} todos={todos} setTodos={setTodos} />
         ))}
       </ul>
     </div>
   );
 }
 
-export default TodoList;
+export default Todos;
