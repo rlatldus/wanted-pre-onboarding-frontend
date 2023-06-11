@@ -5,7 +5,7 @@ const ButtonBg = styled.div`
 `;
 
 const ButtonShadow = styled.div`
-  width: ${(props) => (props.small ? "50px" : "300px")};
+  width: ${(props) => (props.small ? "70px" : "300px")};
   height: ${(props) => (props.small ? "35px" : "50px")};
   box-shadow: -3px -3px 7px white;
   border-radius: 24px;
@@ -15,8 +15,8 @@ const ButtonCont = styled.button`
   background-color: ${(props) => (props.primary ? "#FF7549" : "white")};
   color: ${(props) => (props.primary ? "white" : "#371F21")};
   border: 2px solid #ff7549;
-  width: ${(props) => (props.small ? "50px" : "300px")};
-  height: ${(props) => (props.small ? "30px" : "40px")};
+  width: ${(props) => (props.small ? "70px" : "300px")};
+  height: ${(props) => (props.small ? "35px" : "50px")};
   box-shadow: 7px 7px 7px rgba(80, 29, 0, 0.16);
   font-size: 16px;
   font-weight: 600;

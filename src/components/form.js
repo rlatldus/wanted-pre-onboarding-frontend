@@ -26,6 +26,31 @@ const SignForm = styled.div`
   }
 `;
 
+const TodosForm = styled.div`
+  display: flex;
+  padding-top: 100px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  #newTodo {
+    input {
+      margin-right: 8px;
+      height: 25px;
+      font-size: 1rem;
+      border: none;
+      padding: 5px 5px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--limeorange);
+      box-shadow: 0 0 7px var(--limeorange);
+    }
+  }
+`;
+
 const Form = ({ children}) => {
   return (
     <SignForm>
@@ -35,7 +60,7 @@ const Form = ({ children}) => {
 };
 
 const TodoForm = ({ children }) => {
-  return <SignForm>{children}</SignForm>;
+  return <TodosForm>{children}</TodosForm>;
 };
 
 export { Form, TodoForm };

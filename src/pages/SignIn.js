@@ -21,7 +21,7 @@ const SignIn = () => {
       navigate("/todo");
     }
   }, [navigate]);
-  
+
     useEffect(() => {
       const accessToken = localStorage.getItem("access_token");
       if (!accessToken) {

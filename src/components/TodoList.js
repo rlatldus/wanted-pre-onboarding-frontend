@@ -4,16 +4,17 @@ import axios from "axios";
 import styled from "styled-components";
 
 const List = styled.li`
-  margin: 7px 0px;
   font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 25px;
+  gap: 15px;
   min-width: 260px;
 
   span {
     margin-left: 3px;
+    display: block;
+    width:300px;
   }
 
   input[type="checkbox"] {
@@ -30,8 +31,9 @@ const List = styled.li`
 
     &:focus {
       outline: none;
-      border-color: var(--green);
-      box-shadow: 0 0 10px var(--green);
+      border-color: var(--limeorange);
+      box-shadow: 0 0 7px var(--limeorange);
+
     }
   }
 
@@ -40,10 +42,9 @@ const List = styled.li`
     align-items: center;
   }
 
-  button:last-child {
-    background-color: var(--deepGreen);
-    color: white;
-    margin-left: 10px;
+    .buttonWrap{
+      display: flex;
+    }
   }
 `;
 
@@ -121,12 +122,14 @@ const TodoListli = ({ id, todo, index, todos, setTodos }) => {
       {editingTodoIndex ? (
         <>
           <input type="text" value={modifiedTodo} onChange={(e) => setModifiedTodo(e.target.value)} data-testid="modify-input" />
-          <SubmitButton small onClick={handleSubmitModification} data-testid="submit-button">
-            제출
-          </SubmitButton>
-          <SubmitButton small onClick={handleCancelModification} data-testid="cancel-button">
-            취소
-          </SubmitButton>
+          <div className="buttonWrap">
+            <SubmitButton small onClick={handleSubmitModification} data-testid="submit-button">
+              제출
+            </SubmitButton>
+            <SubmitButton small onClick={handleCancelModification} data-testid="cancel-button">
+              취소
+            </SubmitButton>
+          </div>
         </>
       ) : (
         <>
@@ -134,13 +137,15 @@ const TodoListli = ({ id, todo, index, todos, setTodos }) => {
             {/* 일단 값이 다르기 때문에 수정, 삭제 */}
             <span>{modifiedTodo}</span>
           </label>
-          <SubmitButton small onClick={() => handleModifyTodo(index)} data-testid="modify-button">
-            수정
-            {/* 5번 수정 클릭 */}
-          </SubmitButton>
-          <SubmitButton small onClick={() => handleDeleteTodo(index)} data-testid="delete-button">
-            삭제
-          </SubmitButton>
+          <div className="buttonWrap">
+            <SubmitButton primary small onClick={() => handleModifyTodo(index)} data-testid="modify-button">
+              수정
+              {/* 5번 수정 클릭 */}
+            </SubmitButton>
+            <SubmitButton primary small onClick={() => handleDeleteTodo(index)} data-testid="delete-button">
+              삭제
+            </SubmitButton>
+          </div>
         </>
       )}
     </List>
