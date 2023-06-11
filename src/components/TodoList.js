@@ -134,13 +134,11 @@ const TodoListli = ({ id, todo, index, todos, setTodos }) => {
       ) : (
         <>
           <label>
-            {/* 일단 값이 다르기 때문에 수정, 삭제 */}
             <span>{modifiedTodo}</span>
           </label>
           <div className="buttonWrap">
             <SubmitButton primary small onClick={() => handleModifyTodo(index)} data-testid="modify-button">
               수정
-              {/* 5번 수정 클릭 */}
             </SubmitButton>
             <SubmitButton primary small onClick={() => handleDeleteTodo(index)} data-testid="delete-button">
               삭제
