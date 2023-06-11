@@ -46,63 +46,51 @@ const List = styled.li`
     margin-left: 10px;
   }
 `;
+
 const TodoListli = ({ id, todo, index, todos, setTodos }) => {
   const access_token = localStorage.getItem("access_token");
   const [editingTodoIndex, setEditingTodoIndex] = useState(false);
   const [modifiedTodo, setModifiedTodo] = useState(todo);
-
-  useEffect(() => {
-    setModifiedTodo(todo); // 초기 값 설정
-  }, [todo]);
+  const [isChecked, setIsChecked] = useState(() => localStorage.getItem(`isChecked-${id}`) === "true");
 
   const handleModifyTodo = () => {
-    //NOTE 수정
     setEditingTodoIndex(true);
-    setTodos([...todos]);
-    console.log([...todos][index].id);
-    return (id = [...todos][index].id);
   };
 
-const handleSubmitModification = () => {
-  if (modifiedTodo && modifiedTodo.trim() !== "") {
-    axios
-      .put(
-        `https://www.pre-onboarding-selection-task.shop/todos/${id}`,
-        {
-          todo: modifiedTodo,
-          isCompleted: editingTodoIndex,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-            "Content-Type": "application/json",
+  const handleSubmitModification = () => {
+    if (modifiedTodo && modifiedTodo.trim() !== "") {
+      axios
+        .put(
+          `https://www.pre-onboarding-selection-task.shop/todos/${id}`,
+          {
+            todo: modifiedTodo,
+            isCompleted: isChecked,
           },
-        }
-      )
-      .then(function (response) {
-        const updatedTodos = [...todos];
-        updatedTodos[index] = response.data.todo;
-        setTodos([...todos,modifiedTodo]);
-        setEditingTodoIndex(false);
-        console.log("수정 성공:", response.data);
-      })
-      .catch(function (error) {
-        console.log("수정 실패:", error.response);
-      });
-  } else {
-    setModifiedTodo(todo);
-  }
-};
-
+          {
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then(function (response) {
+          setEditingTodoIndex(false);
+          console.log("수정 성공:", response.data);
+        })
+        .catch(function (error) {
+          console.log("수정 실패:", error.response);
+        });
+    } else {
+      setModifiedTodo([...todos][index].todo);
+    }
+  };
 
   const handleCancelModification = () => {
-    //NOTE 취소
     setEditingTodoIndex(false);
-    setModifiedTodo(todo); // 원래 값으로 복원
+    setModifiedTodo([...todos][index].todo);
   };
 
   const handleDeleteTodo = () => {
-    //NOTE 삭제
     axios
       .delete(`https://www.pre-onboarding-selection-task.shop/todos/${id}`, {
         headers: {
@@ -110,16 +98,26 @@ const handleSubmitModification = () => {
         },
       })
       .then(function (response) {
-        const updatedTodos = todos.filter((_, i) => i !== index);
+        const updatedTodos = todos.filter((todo) => todo.id !== id);
         setTodos(updatedTodos);
-        console.log("삭제 성공:", response.data);
+        console.log("삭제 성공:", response, id, updatedTodos);
       })
       .catch(function (error) {
         console.log("삭제 실패:", error.response);
       });
   };
+
+  useEffect(() => {
+    localStorage.setItem(`isChecked-${id}`, isChecked.toString());
+  }, [isChecked, id]);
+
+  const handleCheckboxChange = (e) => {
+    setIsChecked(e.target.checked);
+  };
+
   return (
     <List key={index}>
+      <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
       {editingTodoIndex ? (
         <>
           <input type="text" value={modifiedTodo} onChange={(e) => setModifiedTodo(e.target.value)} data-testid="modify-input" />
@@ -134,8 +132,7 @@ const handleSubmitModification = () => {
         <>
           <label>
             {/* 일단 값이 다르기 때문에 수정, 삭제 */}
-            <input type="checkbox" />
-            <span>{todo}</span>
+            <span>{modifiedTodo}</span>
           </label>
           <SubmitButton small onClick={() => handleModifyTodo(index)} data-testid="modify-button">
             수정

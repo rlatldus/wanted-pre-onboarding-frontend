@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SubmitButton } from "../components/button";
 import { TodoListli } from "../components/TodoList";
 import axios from "axios";
+import { TodoForm } from "../components/form";
 
 function Todos() {
   const access_token = localStorage.getItem("access_token");
@@ -23,7 +24,7 @@ function Todos() {
         setTodos(res.data);
         console.log(res.data)
       });
-  }, [access_token]);
+  }, [access_token, setTodos]);
 
 const handleAddTodo = () => {
   if (newTodo.trim() !== "") {
@@ -57,19 +58,18 @@ const handleAddTodo = () => {
 
 
   return (
-    <div>
+    <TodoForm>
       <h1>Todo List</h1>
-
-      <input type="text" value={newTodo} onChange={handleInputChange} placeholder="Enter a new todo" data-testid="new-todo-input" />
+      <input type="text" value={newTodo} onChange={handleInputChange} placeholder="나의 할 일을 적어주세요" data-testid="new-todo-input" />
       <SubmitButton small onClick={handleAddTodo} data-testid="new-todo-add-button">
         추가
       </SubmitButton>
       <ul>
         {todos.map((todo, index) => (
-          <TodoListli key={index} todo={todo.todo} id={todo.id} index={index} todos={todos} setTodos={setTodos} />
+          <TodoListli key={todo.id} todo={todo.todo} id={todo.id} index={index} todos={todos} setTodos={setTodos} />
         ))}
       </ul>
-    </div>
+    </TodoForm>
   );
 }
 

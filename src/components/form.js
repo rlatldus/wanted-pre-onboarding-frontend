@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SignForm = styled.form`
+const SignForm = styled.div`
   display: flex;
   padding-top: 100px;
   flex-direction: column;
@@ -27,7 +27,15 @@ const SignForm = styled.form`
 `;
 
 const Form = ({ children}) => {
-  return <SignForm >{children}</SignForm>;
+  return (
+    <SignForm>
+      <form>{children}</form>
+    </SignForm>
+  );
 };
 
-export { Form };
+const TodoForm = ({ children }) => {
+  return <SignForm>{children}</SignForm>;
+};
+
+export { Form, TodoForm };
