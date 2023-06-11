@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { SubmitButton } from "../components/button";
-import { TodoListli } from "../components/TodoList";
 import axios from "axios";
-import { TodoForm } from "../components/form";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { TodoListli } from "../components/TodoList";
+import { SubmitButton } from "../components/button";
+import { TodoForm } from "../components/form";
 
 
 const Write = styled.div`
@@ -42,7 +42,6 @@ function Todos() {
       })
       .then((res) => {
         setTodos(res.data);
-        console.log(res.data)
       });
   }, [access_token, setTodos]);
 
@@ -71,12 +70,6 @@ const handleAddTodo = () => {
       });
   }
 };
-
-
-
-
-
-
 
   return (
     <TodoForm>

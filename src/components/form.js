@@ -1,4 +1,10 @@
 import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+import { Button } from "./button";
+import { Label } from "./input";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 const SignForm = styled.div`
   display: flex;
@@ -6,15 +12,17 @@ const SignForm = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
-  label{
+
+  label {
     font-weight: 600;
     text-align: left;
   }
 
   input {
-    margin-top:10px;
-    margin-bottom:30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 30px;
     width: 300px;
     border: none;
     display: block;
@@ -51,10 +59,54 @@ const TodosForm = styled.div`
   }
 `;
 
-const Form = ({ children}) => {
+const Form = ({ children, Authentication, alertMessage, navigation }) => {
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState({ email: "", password: "" });
+  const [isAvailable, setIsAvailable] = useState(false);
+
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
+  useEffect(() => {
+    setIsAvailable(userData.email.includes("@") && userData.password.length >= 8);
+  }, [userData.email, userData.password]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isAvailable) {
+      axios
+        .post(
+          `https://www.pre-onboarding-selection-task.shop/auth/${Authentication}`,
+          { email: userData.email, password: userData.password },
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        )
+        .then(function (response) {
+          alert(alertMessage );
+          Authentication === "signin" && localStorage.setItem("access_token", response.data.access_token);
+          navigate(navigation );
+          console.log(Authentication, navigation)
+        })
+        .catch(function (error) {
+          console.log(error.response);
+          alert(error.response.data.message);
+        });
+    }
+  };
+
   return (
     <SignForm>
-      <form>{children}</form>
+      <form>
+        <Label handleChange={handleChange} email={userData.email} password={userData.password} />
+        <Button primary data-testid={`${Authentication}-button`} disabled={!isAvailable} click={handleSubmit}>
+          {children}
+        </Button>
+      </form>
     </SignForm>
   );
 };
