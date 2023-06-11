@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Form } from "../components/form";
+import { TodoForm } from "../components/form";
 import { Button } from "../components/button";
 import styled from "styled-components";
 
@@ -15,7 +15,7 @@ const Main = () => {
 
 
     return (
-      <Form>
+      <TodoForm>
         <Title>TODO List</Title>
         <Link to="/signin">
           <Button primary>
@@ -27,7 +27,7 @@ const Main = () => {
           회원가입
           </Button>
         </Link>
-      </Form>
+      </TodoForm>
     );
   };
   
