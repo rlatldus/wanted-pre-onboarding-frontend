@@ -20,6 +20,7 @@ npm run start
 ## 데모 영상 및 배포 링크
 
 **<https://rlatldus.github.io/wanted-pre-onboarding-frontend/>**
+![데모영상](https://github.com/rlatldus/wanted-pre-onboarding-frontend/assets/122216298/7a26e916-41ac-42fe-b775-c737559970e8)
 
 
 
