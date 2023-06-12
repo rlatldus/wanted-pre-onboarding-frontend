@@ -209,5 +209,3 @@ editingTodoIndex === 참
     <input data-testid="modify-input" />
     <button data-testid="submit-button">제출</button>
     <button data-testid="cancel-button">취소</button>
-
-## 스크린 샷 및 GIF
