@@ -116,9 +116,9 @@ npm run start
   - 로컬 스토리지에 토큰이 있는 상태로 `/signin` 또는 `/signup` 페이지에 접속한다면 `/todo` 경로로 리다이렉트 시켜주세요
   - 로컬 스토리지에 토큰이 없는 상태로 `/todo`페이지에 접속한다면 `/signin` 경로로 리다이렉트 시켜주세요
 
----
 `util폴더 안에 AuthenticatedRoute.js와 PrivateRoute.js 로 나눠서 토큰이 있을 때와 없을 때 경로 를 다르게 리다이렉트`
 
+---
 
 ### :: 2. TODO LIST
 
@@ -189,7 +189,7 @@ editingTodoIndex === 참
 
 - 투두 리스트의 삭제 기능을 구현해주세요
 
-  - 투두 리스트의 TODO 우측의 삭제버튼을 누르면 해당 아이템이 삭제되도록 해주세요
+- 투두 리스트의 TODO 우측의 삭제버튼을 누르면 해당 아이템이 삭제되도록 해주세요
 
 #### Assignment 10
 
