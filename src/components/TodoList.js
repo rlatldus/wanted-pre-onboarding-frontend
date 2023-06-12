@@ -51,11 +51,13 @@ const List = styled.li`
 const TodoListli = ({ id, todo, index, todos, setTodos }) => {
   const access_token = localStorage.getItem("access_token");
   const [editingTodoIndex, setEditingTodoIndex] = useState(false);
+  const [originalTodo, setOriginalTodo] = useState(todo); // 수정 이전의 내용 저장
   const [modifiedTodo, setModifiedTodo] = useState(todo);
   const [isChecked, setIsChecked] = useState(() => localStorage.getItem(`isChecked-${id}`) === "true");
 
   const handleModifyTodo = () => {
     setEditingTodoIndex(true);
+    setOriginalTodo(modifiedTodo);
   };
 
   const handleSubmitModification = () => {
@@ -74,11 +76,11 @@ const TodoListli = ({ id, todo, index, todos, setTodos }) => {
             },
           }
         )
-        .then( (response) =>{
+        .then(() => {
           setEditingTodoIndex(false);
         })
-        .catch( ()=> {
-          alert("수정에 실패했습니다.")
+        .catch(() => {
+          alert("수정에 실패했습니다.");
         });
     } else {
       setModifiedTodo([...todos][index].todo);
@@ -87,7 +89,7 @@ const TodoListli = ({ id, todo, index, todos, setTodos }) => {
 
   const handleCancelModification = () => {
     setEditingTodoIndex(false);
-    setModifiedTodo([...todos][index].todo);
+    setModifiedTodo(originalTodo);
   };
 
   const handleDeleteTodo = () => {
@@ -97,12 +99,12 @@ const TodoListli = ({ id, todo, index, todos, setTodos }) => {
           Authorization: `Bearer ${access_token}`,
         },
       })
-      .then((response) =>{
+      .then(() => {
         const updatedTodos = todos.filter((todo) => todo.id !== id);
         setTodos(updatedTodos);
       })
-      .catch( () =>{
-        alert("삭제 실패했습니다.")
+      .catch(() => {
+        alert("삭제 실패했습니다.");
       });
   };
 
@@ -117,34 +119,34 @@ const TodoListli = ({ id, todo, index, todos, setTodos }) => {
   return (
     <List key={index}>
       <label>
-      <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
-      {editingTodoIndex ? (
-        <>
-          <input type="text" value={modifiedTodo} onChange={(e) => setModifiedTodo(e.target.value)} data-testid="modify-input" />
-          <div className="buttonWrap">
-            <SubmitButton small onClick={handleSubmitModification} data-testid="submit-button">
-              제출
-            </SubmitButton>
-            <SubmitButton small onClick={handleCancelModification} data-testid="cancel-button">
-              취소
-            </SubmitButton>
-          </div>
-        </>
-      ) : (
-        <>
-          <label>
-            <span>{modifiedTodo}</span>
-          </label>
-          <div className="buttonWrap">
-            <SubmitButton primary small onClick={() => handleModifyTodo(index)} data-testid="modify-button">
-              수정
-            </SubmitButton>
-            <SubmitButton primary small onClick={() => handleDeleteTodo(index)} data-testid="delete-button">
-              삭제
-            </SubmitButton>
-          </div>
-        </>
-      )}
+        <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
+        {editingTodoIndex ? (
+          <>
+            <input type="text" value={modifiedTodo} onChange={(e) => setModifiedTodo(e.target.value)} data-testid="modify-input" />
+            <div className="buttonWrap">
+              <SubmitButton small onClick={handleSubmitModification} data-testid="submit-button">
+                제출
+              </SubmitButton>
+              <SubmitButton small onClick={handleCancelModification} data-testid="cancel-button">
+                취소
+              </SubmitButton>
+            </div>
+          </>
+        ) : (
+          <>
+            <label>
+              <span>{modifiedTodo}</span>
+            </label>
+            <div className="buttonWrap">
+              <SubmitButton primary small onClick={() => handleModifyTodo(index)} data-testid="modify-button">
+                수정
+              </SubmitButton>
+              <SubmitButton primary small onClick={() => handleDeleteTodo(index)} data-testid="delete-button">
+                삭제
+              </SubmitButton>
+            </div>
+          </>
+        )}
       </label>
     </List>
   );
