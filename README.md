@@ -11,6 +11,9 @@
 
 ## 프로젝트의 실행 방법
 
+git clone <https://github.com/rlatldus/wanted-pre-onboarding-frontend.git>
+클론
+
 npm i
 앱에 필요한 셋팅 설치
 
