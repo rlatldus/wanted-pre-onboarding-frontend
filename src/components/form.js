@@ -5,7 +5,6 @@ import { Label } from "./label";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
 const SignForm = styled.div`
   display: flex;
   padding-top: 100px;
@@ -64,8 +63,6 @@ const Form = ({ children, Authentication, alertMessage, navigation }) => {
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [isAvailable, setIsAvailable] = useState(false);
 
-
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
@@ -87,14 +84,14 @@ const Form = ({ children, Authentication, alertMessage, navigation }) => {
           }
         )
         .then(function (response) {
-          alert(alertMessage );
+          alert(alertMessage);
           Authentication === "signin" && localStorage.setItem("access_token", response.data.access_token);
-          navigate(navigation );
-          console.log(Authentication, navigation)
+          navigate(navigation);
+          console.log(Authentication, navigation);
         })
         .catch(function (error) {
           console.log(error.response);
-          alert(error.response.data.message);
+          error.response.data.message === "Unauthorized" ? alert("회원정보를 다시 한 번 확인해주세요.") : alert(error.response.data.message);
         });
     }
   };
