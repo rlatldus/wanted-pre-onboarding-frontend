@@ -20,11 +20,9 @@ npm run start
 ## 데모 영상 및 배포 링크
 
 **<https://rlatldus.github.io/wanted-pre-onboarding-frontend/>**
-<
+<br/>
+
 ![todo](https://github.com/rlatldus/wanted-pre-onboarding-frontend/assets/122216298/51784876-f94c-477b-9fbe-db6d4b15db26)
-
-
-
 
 ## 프로젝트 설명
 
@@ -92,8 +90,8 @@ npm run start
   }, [userData.email, userData.password]);
 
   <Button primary data-testid={`${Authentication}-button`} disabled={!isAvailable} click={handleSubmit}>
-          {children}
-        </Button>
+    {children}
+  </Button>
   ```
 
 #### Assignment 2
@@ -101,7 +99,7 @@ npm run start
 - 회원가입 페이지에서 버튼을 클릭 시 회원가입을 진행하고 회원가입이 정상적으로 완료되었을 시 `/signin` 경로로 이동해주세요
 - 로그인 페이지에서 버튼을 클릭 시, 로그인을 진행하고 로그인이 정상적으로 완료되었을 시 `/todo` 경로로 이동해주세요
 
-navigate(navigation ); 로그인할때는 /todo로, 회원가입할때는 /sighin으로 가도록 만들었습니다.
+`navigate(navigation ); 로그인할때는 /todo로, 회원가입할때는 /sighin으로 가도록 리다이렉트`
 
 #### Assignment 3
 
@@ -109,8 +107,7 @@ navigate(navigation ); 로그인할때는 /todo로, 회원가입할때는 /sighi
   - 로그인 API는 로그인이 성공했을 시 Response Body에 JWT를 포함해서 응답합니다.
   - 응답받은 JWT는 로컬 스토리지에 저장해주세요
 
-  Authentication === "signin" && localStorage.setItem("access_token", response.data.access_token);
-  navigate(navigation );
+  `Authentication === "signin" && localStorage.setItem("access_token", response.data.access_token); navigate(navigation );`
 
 #### Assignment 4
 
@@ -120,7 +117,7 @@ navigate(navigation ); 로그인할때는 /todo로, 회원가입할때는 /sighi
   - 로컬 스토리지에 토큰이 없는 상태로 `/todo`페이지에 접속한다면 `/signin` 경로로 리다이렉트 시켜주세요
 
 ---
-util폴더 안에 AuthenticatedRoute.js와 PrivateRoute.js 로 나눠서 토큰이 있을 때와 없을 때 경로 를 다르게 리다이렉트 시켰습니다.
+`util폴더 안에 AuthenticatedRoute.js와 PrivateRoute.js 로 나눠서 토큰이 있을 때와 없을 때 경로 를 다르게 리다이렉트`
 
 
 ### :: 2. TODO LIST
@@ -134,7 +131,8 @@ util폴더 안에 AuthenticatedRoute.js와 PrivateRoute.js 로 나눠서 토큰�
 
 ```html
 
-<ul></ul> 테그 안에 map을 사용하여 li를 나열했고, 아래와 같이 컴포넌트를 만들었습니다.
+`<ul></ul>테그 안에 map을 사용하여 li를 나열했고, 아래와 같이 컴포넌트를 만듬`
+
 editingTodoIndex === 거짓
 <li>
   <label>
@@ -146,6 +144,7 @@ editingTodoIndex === 거짓
       </div>
   </label>
 </li>
+
 editingTodoIndex === 참
 <li>
   <label>
