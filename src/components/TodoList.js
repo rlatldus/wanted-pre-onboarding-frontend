@@ -118,6 +118,7 @@ const TodoListli = ({ id, todo, index, todos, setTodos }) => {
 
   return (
     <List key={index}>
+      <label>
       <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
       {editingTodoIndex ? (
         <>
@@ -146,6 +147,7 @@ const TodoListli = ({ id, todo, index, todos, setTodos }) => {
           </div>
         </>
       )}
+      </label>
     </List>
   );
 };

@@ -36,14 +36,37 @@
   - 로그인 페이지에는 로그인 button에 `data-testid="signin-button"` 속성을 부여해주세요
 
   ```html
-  <!-- 예시 -->
-  <input data-testid="email-input" />
-  <input data-testid="password-input" />
-  <button data-testid="signup-button">회원가입</button>
+  <!-- Form 컴포넌트 하나로 로그인과 로그아웃을 한번에 만들었습니다. -->
+      <form>
+        <Label handleChange={handleChange} email={userData.email} password={userData.password} />
+        <Button primary data-testid={`${Authentication}-button`} disabled={!isAvailable} click={handleSubmit}>
+          {children}
+        </Button>
+      </form>
   ```
+  ```html
+  <!-- email 과 password는 Label 컴포넌트로 만들었고,  data-testid 속성도 부여했습니다.-->
 
-- 두 페이지의 UI는 동일해도 무방합니다.
-- 회원가입과 로그인 페이지의 버튼에 부여되는 test-id가 다른 것에 유의해주세요
+    <input
+      type="email"
+      name="email"
+      tabIndex="1"
+      data-testid="email-input"
+      placeholder="이메일을 입력해주세요."
+      value={email}
+      onChange={handleChange}
+  />
+    <input
+      type="password"
+      name="password"
+      tabIndex="2"
+      minLength={8}
+      placeholder="8자이상 입력해주세요."
+      value={password}
+      onChange={handleChange}
+      data-testid="password-input"
+  />
+  ```
 
 #### Assignment 1
 
@@ -53,19 +76,33 @@
   - 비밀번호 조건: 8자 이상
   - 이메일과 비밀번호의 유효성 검사 조건은 별도의 추가 조건 부여 없이 위의 조건대로만 진행해주세요 (e.g. 비밀번호 유효성 검사에 특수문자 포함 등의 새로운 조건을 추가하는 행위, 비밀번호 확인 조건을 추가하는 행위 등은 지양해주세요)
 
-- 입력된 이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 `disabled` 속성을 부여해주세요
-- 보안 상 실제 사용하고 계신 이메일과 패스워드말고 테스트용 이메일, 패스워드 사용을 권장드립니다.
+  ```html
+  <!-- 입력된 이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 `disabled` 속성을 부여-->
+
+  useEffect(() => {
+    setIsAvailable(userData.email.includes("@") && userData.password.length >= 8);
+  }, [userData.email, userData.password]);
+
+  <Button primary data-testid={`${Authentication}-button`} disabled={!isAvailable} click={handleSubmit}>
+          {children}
+        </Button>
+  ```
 
 #### Assignment 2
 
 - 회원가입 페이지에서 버튼을 클릭 시 회원가입을 진행하고 회원가입이 정상적으로 완료되었을 시 `/signin` 경로로 이동해주세요
+- 로그인 페이지에서 버튼을 클릭 시, 로그인을 진행하고 로그인이 정상적으로 완료되었을 시 `/todo` 경로로 이동해주세요
+
+navigate(navigation ); 로그인할때는 /todo로, 회원가입할때는 /sighin으로 가도록 만들었습니다.
 
 #### Assignment 3
 
-- 로그인 페이지에서 버튼을 클릭 시, 로그인을 진행하고 로그인이 정상적으로 완료되었을 시 `/todo` 경로로 이동해주세요
 
   - 로그인 API는 로그인이 성공했을 시 Response Body에 JWT를 포함해서 응답합니다.
   - 응답받은 JWT는 로컬 스토리지에 저장해주세요
+
+  Authentication === "signin" && localStorage.setItem("access_token", response.data.access_token);
+  navigate(navigation );
 
 #### Assignment 4
 
@@ -75,6 +112,8 @@
   - 로컬 스토리지에 토큰이 없는 상태로 `/todo`페이지에 접속한다면 `/signin` 경로로 리다이렉트 시켜주세요
 
 ---
+util폴더 안에 AuthenticatedRoute.js와 PrivateRoute.js 로 나눠서 토큰이 있을 때와 없을 때 경로 를 다르게 리다이렉트 시켰습니다.
+
 
 ### :: 2. TODO LIST
 
@@ -86,16 +125,28 @@
 - TODO는 `<li>` tag를 이용해 감싸주세요
 
 ```html
+
+<ul></ul> 테그 안에 map을 사용하여 li를 나열했고, 아래와 같이 컴포넌트를 만들었습니다.
+editingTodoIndex === 거짓
 <li>
   <label>
     <input type="checkbox" />
     <span>TODO 1</span>
+    <div className="buttonWrap">
+      <button  data-testid="modify-button">수정</button>
+      <button data-testid="delete-button">삭제</button>
+      </div>
   </label>
 </li>
+editingTodoIndex === 참
 <li>
   <label>
     <input type="checkbox" />
-    <span>TODO 2</span>
+    <input type="text" />
+    <div className="buttonWrap">
+      <button data-testid="submit-button">제출</button>
+      <button  data-testid="cancel-button">취소</button>
+      </div>
   </label>
 </li>
 ```
@@ -126,16 +177,6 @@
   - 수정 버튼에는 `data-testid="modify-button"` 속성을 부여해주세요
   - 삭제 버튼에는 `data-testid="delete-button"` 속성을 부여해주세요
 
-    ```html
-    <li>
-      <label>
-        <input type="checkbox" />
-        <span>TODO 1</span>
-      </label>
-      <button data-testid="modify-button">수정</button>
-      <button data-testid="delete-button">삭제</button>
-    </li>
-    ```
 
 #### Assignment 9
 
@@ -161,21 +202,5 @@
     <input data-testid="modify-input" />
     <button data-testid="submit-button">제출</button>
     <button data-testid="cancel-button">취소</button>
-
-## 특징 및 구현 목록
-
-- Tailwind로 디자인
-- NextAuth를 통한 구글, Github, Naver 소셜 로그인 및 일반 로그인
-- react-hook-form을 사용한 클라이언트 양식 유효성 검사 및 처리
-- react-toast를 이용한 성공, 실패 메세지 처리
-- react-date-range와 date-fns를 이용해 캘린더 UI 및 결제 로직 구현
-- 카카오 결제 api 연결
-- 게스트 예약 취소 및 카카오 환불 처리 구현
-- 에어비앤비 등록자 예약 취소 및 카카오 환불 처리 구현
-- 페이지 로딩시 로딩 스피너 구현 및 에러 컴포넌트 구현
-- 에어비앤비 등록 로직 구현
-- 카테고리, 날짜 범위, 지도 위치, 손님 수, 객실 및 욕실별 필터 기능 구현 (쿼리 스트링을 통해 필터 하여 필터 결과 URL 공유 가능)
-- 즐겨찾기 기능 구현
-- 반응형
 
 ## 스크린 샷 및 GIF
