@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "./static/css/main.321a97a1.css",
-    "main.js": "./static/js/main.fad394a9.js",
-    "index.html": "./index.html",
-    "main.321a97a1.css.map": "./static/css/main.321a97a1.css.map",
-    "main.fad394a9.js.map": "./static/js/main.fad394a9.js.map"
+    "main.css": "https://rlatldus.github.io/wanted-pre-onboarding-frontend/static/css/main.321a97a1.css",
+    "main.js": "https://rlatldus.github.io/wanted-pre-onboarding-frontend/static/js/main.70a5a651.js",
+    "index.html": "https://rlatldus.github.io/wanted-pre-onboarding-frontend/index.html",
+    "main.321a97a1.css.map": "https://rlatldus.github.io/wanted-pre-onboarding-frontend/static/css/main.321a97a1.css.map",
+    "main.70a5a651.js.map": "https://rlatldus.github.io/wanted-pre-onboarding-frontend/static/js/main.70a5a651.js.map"
   },
   "entrypoints": [
     "static/css/main.321a97a1.css",
-    "static/js/main.fad394a9.js"
+    "static/js/main.70a5a651.js"
   ]
 }
