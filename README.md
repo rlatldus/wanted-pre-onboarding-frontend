@@ -20,14 +20,15 @@ npm run start
 ## 데모 영상 및 배포 링크
 
 **<https://rlatldus.github.io/wanted-pre-onboarding-frontend/>**
-![데모영상](https://github.com/rlatldus/wanted-pre-onboarding-frontend/assets/122216298/7a26e916-41ac-42fe-b775-c737559970e8)
+<
+![todo](https://github.com/rlatldus/wanted-pre-onboarding-frontend/assets/122216298/51784876-f94c-477b-9fbe-db6d4b15db26)
 
 
 
 
 ## 프로젝트 설명
 
-프론트엔드 과정 선발 과제는 React를 사용하여 간단한 로그인 기능과 TodoList 기능을 구현하는 프론트엔드 기초 개발 능력으로 styled component를 사용하였습니다. UI는 편안한 warmcolor를 사용하였습니다.
+프론트엔드 과정 선발 과제는 React를 사용하여 간단한 로그인 기능과 TodoList 기능을 구현하는 프론트엔드 기초 개발평가 과제로 styled component를 사용하였습니다. UI는 편안한 warmcolor를 사용하였습니다.
 
 <br>
 
