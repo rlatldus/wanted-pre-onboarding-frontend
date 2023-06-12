@@ -12,7 +12,9 @@ const Main = () => {
 
   return (
     <TodoForm>
-      <Title>TODO List</Title>
+      <Link to="/">
+        <Title>TODO List</Title>
+      </Link>
       <Link to="/signin">
         <Button primary>로그인</Button>
       </Link>

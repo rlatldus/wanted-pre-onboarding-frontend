@@ -22,7 +22,7 @@ const ButtonCont = styled.button`
   font-weight: 600;
   border-radius: 24px;
   &:active {
-    background-color: "#371F21";
+    background-color: #f06030;
   }
   &:disabled {
     color: #eac59f;
