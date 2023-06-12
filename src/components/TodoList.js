@@ -74,12 +74,11 @@ const TodoListli = ({ id, todo, index, todos, setTodos }) => {
             },
           }
         )
-        .then(function (response) {
+        .then( (response) =>{
           setEditingTodoIndex(false);
-          console.log("수정 성공:", response.data);
         })
-        .catch(function (error) {
-          console.log("수정 실패:", error.response);
+        .catch( ()=> {
+          alert("수정에 실패했습니다.")
         });
     } else {
       setModifiedTodo([...todos][index].todo);
@@ -98,13 +97,12 @@ const TodoListli = ({ id, todo, index, todos, setTodos }) => {
           Authorization: `Bearer ${access_token}`,
         },
       })
-      .then(function (response) {
+      .then((response) =>{
         const updatedTodos = todos.filter((todo) => todo.id !== id);
         setTodos(updatedTodos);
-        console.log("삭제 성공:", response, id, updatedTodos);
       })
-      .catch(function (error) {
-        console.log("삭제 실패:", error.response);
+      .catch( () =>{
+        alert("삭제 실패했습니다.")
       });
   };
 

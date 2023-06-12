@@ -28,7 +28,6 @@ function Todos() {
   const [newTodo, setNewTodo] = useState("");
 
   const handleInputChange = (e) => {
-    //NOTE 정보 가져오기
     setNewTodo(e.target.value);
   };
 
@@ -41,6 +40,7 @@ function Todos() {
       })
       .then((res) => {
         setTodos(res.data);
+        console.log(todos)
       });
   }, [access_token, setTodos]);
 
@@ -49,9 +49,7 @@ function Todos() {
       axios
         .post(
           `https://www.pre-onboarding-selection-task.shop/todos`,
-          {
-            todo: newTodo,
-          },
+          { todo: newTodo },
           {
             headers: {
               Authorization: `Bearer ${access_token}`,
@@ -59,12 +57,12 @@ function Todos() {
             },
           }
         )
-        .then(function (response) {
+        .then((response) => {
           setTodos((prevTodos) => [...prevTodos, response.data]);
           setNewTodo("");
         })
-        .catch(function (error) {
-          console.log("글쓰기 실패:", error.response);
+        .catch(() => {
+          alert("글쓰기가 실패되었습니다.");
         });
     }
   };
