@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { Button } from "./button";
-import { Label } from "./input";
+import { Label } from "./label";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
