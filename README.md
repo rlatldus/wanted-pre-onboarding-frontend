@@ -1,37 +1,63 @@
-# wanted-pre-onboarding-frontend
+# 원티드 프리온보딩 프론트엔드 - 6월 선발 과제
 
-# 원티드 프리온보딩 프론트엔드 - 선발 과제
+## 이름
+- 김시연
 
-이 레파지토리는 원티드 프리온보딩 프론트엔드 과정 선발 과제 안내 및 과제 제출을 위해 만들어졌습니다.
+## 배포
+- 링크 : **<https://rlatldus.github.io/wanted-pre-onboarding-frontend/>**
 
-# TodoList
+## git clone 후 실행방법
+ ```zsh
+ cd wanted-pre-onboarding-frontend
+ $ npm install
+ $ npm start
+ ``` 
 
-## 지원자의 성명
-김시연
+## 프로젝트 구조
+```
+📦 src
+├── 📂 apis
+│   ├── 📄 auth.js
+│   ├── 📄 config.js
+│   └── 📄 todo.js
+└── 📂 component
+    ├── 📂 login
+    │    ├── 📄 Signin.jsx
+    │    └── 📄 Signup.jsx
+    └── 📂 todo
+         ├── 📄 Todo.jsx
+         └── 📄 TodoItem.jsx
+```
+## 데모영상 GIF
 
-## 프로젝트의 실행 방법
+![todo](https://github.com/rlatldus/wanted-pre-onboarding-frontend/assets/122216298/51784876-f94c-477b-9fbe-db6d4b15db26)
 
-git clone <https://github.com/rlatldus/wanted-pre-onboarding-frontend.git>
-클론
+## 사용 기술
+- React
+- Styled Components
+- axios
+- react-router-dom
 
-npm i
-앱에 필요한 셋팅 설치
+## 로컬 서버 구동
 
-npm run start
-앱 실행
+- 배포된 API에 문제가 있는 경우 활용할 수 있는 로컬 서버 구동법입니다.
+- 로컬 서버는 sqlite에 의존성이 있습니다.
+
+### 설치 및 실행
+
+```zsh
+$ npm install
+$ npm start
+```
+
+- 위 순서대로 실행하면 localhost:3000 포트에 서버가 실행됩니다.
+
+
 
 ## 데모 영상 및 배포 링크
 
 **<https://rlatldus.github.io/wanted-pre-onboarding-frontend/>**
 <br/>
-
-![todo](https://github.com/rlatldus/wanted-pre-onboarding-frontend/assets/122216298/51784876-f94c-477b-9fbe-db6d4b15db26)
-
-## 프로젝트 설명
-
-프론트엔드 과정 선발 과제는 React를 사용하여 간단한 로그인 기능과 TodoList 기능을 구현하는 프론트엔드 기초 개발평가 과제로 styled component를 사용하였습니다. UI는 편안한 warmcolor를 사용하였습니다.
-
-<br>
 
 ### :: 1. 로그인 / 회원가입
 
