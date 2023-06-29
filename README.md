@@ -38,27 +38,6 @@
 - axios
 - react-router-dom
 
-## 로컬 서버 구동
-
-- 배포된 API에 문제가 있는 경우 활용할 수 있는 로컬 서버 구동법입니다.
-- 로컬 서버는 sqlite에 의존성이 있습니다.
-
-### 설치 및 실행
-
-```zsh
-$ npm install
-$ npm start
-```
-
-- 위 순서대로 실행하면 localhost:3000 포트에 서버가 실행됩니다.
-
-
-
-## 데모 영상 및 배포 링크
-
-**<https://rlatldus.github.io/wanted-pre-onboarding-frontend/>**
-<br/>
-
 ### :: 1. 로그인 / 회원가입
 
 - `/signup` 경로에 회원가입 기능을 개발해주세요
