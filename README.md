@@ -37,11 +37,15 @@
 
 ![todo](https://github.com/rlatldus/wanted-pre-onboarding-frontend/assets/122216298/51784876-f94c-477b-9fbe-db6d4b15db26)
 
+
+
 ## 사용 기술
 - React
 - Styled Components
 - axios
 - react-router-dom
+
+<hr/>
 
 ### 화면 리스트 
 :white_check_mark: router.tsx 생성   (router 추가 필요할 떄 마다 수정)   
