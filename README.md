@@ -17,23 +17,21 @@
 ```
 📦 src
 ├── 📂 components
-│   ├── 📄 auth.js
-│   ├── 📄 config.js
-│   └── 📄 todo.js
-└── 📂 pages
-|   ├── 📂 login
-|   │    ├── 📄 Signin.jsx
-|   │    └── 📄 Signup.jsx
-|   └── 📂 todo
-|        ├── 📄 Todo.jsx
-|        └── 📄 TodoItem.jsx
+│   ├── 📄 TodoList.js
+│   ├── 📄 button.js
+│   ├── 📄 form.js
+│   └── label.js
+│
+├── 📂 pages
+|   ├── 📄 Main.js
+|   ├── 📄 SignIn.js 
+|   ├── 📄 SignUp.js
+|   └── 📄 Todo.js
+| 
 └── 📂 util
-    ├── 📂 login
-    │    ├── 📄 Signin.jsx
-    │    └── 📄 Signup.jsx
-    └── 📂 todo
-         ├── 📄 Todo.jsx
-         └── 📄 TodoItem.jsx
+     ├── 📄 AuthenticatedRoute.js
+     └── 📄 PrivateRoute.js
+
 ```
 ## 데모영상 GIF
 
