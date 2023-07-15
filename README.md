@@ -1,10 +1,10 @@
 # 원티드 프리온보딩 프론트엔드 - 6월 선발 과제
 
-## 이름
-- 김시연
-
-## 배포
-- 링크 : **<https://rlatldus.github.io/wanted-pre-onboarding-frontend/>**
+# LINE MOVIE
+오늘의 할일을 메모 생성하고 추가, 수정, 삭제 가능한 메모 기능 앱 <br />
+- **`Project duration` :** 2023.06.11 - 2023.06.16
+- **`Team members` :** 김시연
+- **`Link` :** [TODO 투두리스트 방문하기👀](https://rlatldus.github.io/wanted-pre-onboarding-frontend/)
 
 ![image](https://github.com/rlatldus/wanted-pre-onboarding-frontend/assets/122216298/0b72fadc-3582-40d8-afd1-32698b4c9326)
 
