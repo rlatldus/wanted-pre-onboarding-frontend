@@ -6,6 +6,10 @@
 ## 배포
 - 링크 : **<https://rlatldus.github.io/wanted-pre-onboarding-frontend/>**
 
+![image](https://github.com/rlatldus/wanted-pre-onboarding-frontend/assets/122216298/0b72fadc-3582-40d8-afd1-32698b4c9326)
+
+
+
 ## git clone 후 실행방법
  ```zsh
  cd wanted-pre-onboarding-frontend
